@@ -1,11 +1,12 @@
 def insertion_sort(lista):
-    for i in range(1, len(lista)):
-        chave = lista[i]
+    n = len(lista)
+    for i in range(1, n):
+        valor = lista[i]
         j = i - 1
-        while j >= 0 and lista[j] > chave:
+        while j >= 0 and lista[j] > valor:
             lista[j + 1] = lista[j]
             j -= 1
-        lista[j + 1] = chave
+        lista[j + 1] = valor
     return lista
 
 

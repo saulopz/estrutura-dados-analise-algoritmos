@@ -1,5 +1,6 @@
 # Tempo Constante O(1)
 
+
 def acesso_constante(lista):
     return lista[0]  # Sempre acessa o mesmo índice
 

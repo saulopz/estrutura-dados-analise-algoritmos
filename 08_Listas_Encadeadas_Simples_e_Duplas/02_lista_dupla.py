@@ -1,10 +1,10 @@
 class No:
     def __init__(self, valor):
-        self.dado = valor
-        self.prox = None
+        self.dado = valor  # Valor do nó
+        self.prox = None  # Ponteiro para o próximo nó
+        self.ant = None  # Ponteiro para o nó anterior
 
-
-class ListaSimples:
+class ListaDupla:
     # Inicializa a lista vazia
     def __init__(self):
         self.inicio = None
@@ -14,10 +14,13 @@ class ListaSimples:
     # Análise de complexidade: O(1)
     def inserir_no_inicio(self, valor):
         novo = No(valor)
-        novo.prox = self.inicio
-        self.inicio = novo
-        if self.fim is None:
+        if self.inicio is None:  # A lista está vazia
+            self.inicio = novo
             self.fim = novo
+        else:
+            novo.prox = self.inicio  # novo aponta para o antigo início
+            self.inicio.ant = novo  # antigo início aponta para o novo
+            self.inicio = novo  # início agora é o novo nó
         self.tamanho += 1
 
     # Análise de complexidade: O(1)
@@ -27,8 +30,9 @@ class ListaSimples:
             self.inicio = novo
             self.fim = novo
         else:
-            self.fim.prox = novo
-            self.fim = novo
+            novo.ant = self.fim  # novo aponta para o antigo fim
+            self.fim.prox = novo  # antigo fim aponta para o novo
+            self.fim = novo  # fim agora é o novo nó
         self.tamanho += 1
 
     # Análise de complexidade: O(n)
@@ -54,6 +58,9 @@ class ListaSimples:
         for _ in range(posicao - 1):
             atual = atual.prox
         novo.prox = atual.prox  # novo aponta para o próximo
+        novo.ant = atual  # novo aponta para o anterior
+        if atual.prox is not None:
+            atual.prox.ant = novo  # próximo do atual aponta para o novo
         atual.prox = novo  # atual aponta para o novo
         self.tamanho += 1  # incrementa o tamanho da lista
 
@@ -65,25 +72,23 @@ class ListaSimples:
                 return True
             atual = atual.prox
         return False
-
+    
     # Remove o primeiro nó com o valor especificado
     # Análise de complexidade: O(n)
     def removerPeloValor(self, valor):
         atual = self.inicio  # aponta para o início
-        anterior = None  # aponta para o nó anterior
-        # percorre a lista
         while atual is not None:
-            # Se o valor do nó atual for igual ao valor a ser removido
             if atual.dado == valor:
-                # Se for o primeiro nó, atualiza o início
-                if anterior is None:
-                    self.inicio = atual.prox
-                # Se não for o primeiro nó, atualiza o próximo do nó anterior
+                if atual.ant is not None:
+                    atual.ant.prox = atual.prox  # nó anterior aponta para o próximo
                 else:
-                    anterior.prox = atual.prox
+                    self.inicio = atual.prox  # atual é o início
+                if atual.prox is not None:
+                    atual.prox.ant = atual.ant  # nó próximo aponta para o anterior
+                else:
+                    self.fim = atual.ant  # atual é o fim
                 self.tamanho -= 1  # decrementa o tamanho da lista
                 return True
-            anterior = atual  # atualiza o nó anterior
             atual = atual.prox  # atualiza o nó atual
         return False
 
@@ -95,24 +100,23 @@ class ListaSimples:
             raise IndexError("Posição inválida")
 
         atual = self.inicio  # aponta para o início
-        anterior = None  # aponta para o nó anterior
-
-        # Se for a primeira posição, atualiza o início
-        if posicao == 0:
-            self.inicio = atual.prox
-            self.tamanho -= 1
-            return True
-
-        # Percorre até a posição desejada
+        # percorre até a posição desejada
         for _ in range(posicao):
-            anterior = atual
             atual = atual.prox
 
-        # Atualiza o próximo do nó anterior
-        anterior.prox = atual.prox
+        if atual.ant is not None:
+            atual.ant.prox = atual.prox  # nó anterior aponta para o próximo
+        else:
+            self.inicio = atual.prox  # atual é o início
+
+        if atual.prox is not None:
+            atual.prox.ant = atual.ant  # nó próximo aponta para o anterior
+        else:
+            self.fim = atual.ant  # atual é o fim
+
         self.tamanho -= 1  # decrementa o tamanho da lista
         return True
-
+    
     # Mostra os elementos da lista
     # Análise de complexidade: O(n)
     def mostrar(self):
@@ -124,7 +128,7 @@ class ListaSimples:
         print("Lista:", elementos)
 
 
-lista = ListaSimples()
+lista = ListaDupla()
 lista.inserir_no_inicio(10)
 lista.mostrar()  # Lista: [10]
 lista.inserir_no_inicio(18)

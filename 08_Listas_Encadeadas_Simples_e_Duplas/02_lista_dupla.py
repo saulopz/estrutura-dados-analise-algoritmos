@@ -65,13 +65,13 @@ class ListaDupla:
         self.tamanho += 1  # incrementa o tamanho da lista
 
     # Análise de complexidade: O(n)
-    def buscar(self, valor):
+    def buscar(self, valor) -> No:
         atual = self.inicio
         while atual is not None:
             if atual.dado == valor:
-                return True
+                return atual
             atual = atual.prox
-        return False
+        return None
     
     # Remove o primeiro nó com o valor especificado
     # Análise de complexidade: O(n)
@@ -117,6 +117,22 @@ class ListaDupla:
         self.tamanho -= 1  # decrementa o tamanho da lista
         return True
     
+    # Remove o nó especificado
+    # Análise de complexidade: O(1)
+    def removerPeloNo(self, no):
+        if no.ant is not None:
+            no.ant.prox = no.prox  # nó anterior aponta para o próximo
+        else:
+            self.inicio = no.prox  # no é o início
+
+        if no.prox is not None:
+            no.prox.ant = no.ant  # nó próximo aponta para o anterior
+        else:
+            self.fim = no.ant  # no é o fim
+
+        self.tamanho -= 1  # decrementa o tamanho da lista
+        return True
+    
     # Mostra os elementos da lista
     # Análise de complexidade: O(n)
     def mostrar(self):
@@ -139,10 +155,17 @@ lista.inserir_no_fim(29)
 lista.mostrar()  # Lista: [18, 10, 20, 29]
 lista.inserir_no_meio(15, 2)
 lista.mostrar()  # Lista: [18, 10, 15, 20, 29]
-print(lista.buscar(15))  # True
-print(lista.buscar(25))  # False
+no = lista.buscar(15)
+print(no.dado if no else None)  # 15
+no = lista.buscar(25)
+print(no.dado if no else None)  # None
 lista.removerPeloValor(15)
 lista.mostrar()  # Lista: [18, 10, 20, 29]
 lista.removerPelaPosicao(0)
 lista.mostrar()  # Lista: [10, 20, 29]
+no = lista.buscar(20)
+lista.removerPeloNo(no)
+lista.mostrar()  # Lista: [10, 29]
+
+
 print("Tamanho da lista:", lista.tamanho)  # Tamanho da lista: 3

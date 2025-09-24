@@ -58,13 +58,23 @@ class ListaSimples:
         self.tamanho += 1  # incrementa o tamanho da lista
 
     # Análise de complexidade: O(n)
-    def buscar(self, valor):
+    def existe_valor(self, valor):
         atual = self.inicio
         while atual is not None:
             if atual.dado == valor:
                 return True
             atual = atual.prox
         return False
+    
+    # Retorna o valor na posição especificada
+    # Análise de complexidade: O(n)
+    def buscar_valor_pela_posicao(self, posicao):
+        if posicao < 0 or posicao >= self.tamanho:
+            raise IndexError("Posição inválida")
+        atual = self.inicio
+        for _ in range(posicao):
+            atual = atual.prox
+        return atual.dado
 
     # Remove o primeiro nó com o valor especificado
     # Análise de complexidade: O(n)

@@ -1,8 +1,10 @@
+
 class No:
     def __init__(self, valor):
         self.dado = valor  # Valor do nó
         self.prox = None  # Ponteiro para o próximo nó
         self.ant = None  # Ponteiro para o nó anterior
+
 
 class ListaDupla:
     # Inicializa a lista vazia
@@ -72,7 +74,7 @@ class ListaDupla:
                 return atual
             atual = atual.prox
         return None
-    
+
     # Remove o primeiro nó com o valor especificado
     # Análise de complexidade: O(n)
     def removerPeloValor(self, valor):
@@ -98,25 +100,21 @@ class ListaDupla:
         # Verifica se a posição é válida
         if posicao < 0 or posicao >= self.tamanho:
             raise IndexError("Posição inválida")
-
         atual = self.inicio  # aponta para o início
         # percorre até a posição desejada
         for _ in range(posicao):
             atual = atual.prox
-
         if atual.ant is not None:
             atual.ant.prox = atual.prox  # nó anterior aponta para o próximo
         else:
             self.inicio = atual.prox  # atual é o início
-
         if atual.prox is not None:
             atual.prox.ant = atual.ant  # nó próximo aponta para o anterior
         else:
             self.fim = atual.ant  # atual é o fim
-
         self.tamanho -= 1  # decrementa o tamanho da lista
         return True
-    
+
     # Remove o nó especificado
     # Análise de complexidade: O(1)
     def removerPeloNo(self, no):
@@ -124,15 +122,13 @@ class ListaDupla:
             no.ant.prox = no.prox  # nó anterior aponta para o próximo
         else:
             self.inicio = no.prox  # no é o início
-
         if no.prox is not None:
             no.prox.ant = no.ant  # nó próximo aponta para o anterior
         else:
             self.fim = no.ant  # no é o fim
-
         self.tamanho -= 1  # decrementa o tamanho da lista
         return True
-    
+
     # Mostra os elementos da lista
     # Análise de complexidade: O(n)
     def mostrar(self):

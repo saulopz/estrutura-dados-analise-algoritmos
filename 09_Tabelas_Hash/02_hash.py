@@ -12,6 +12,7 @@
 # que desenvolvemos anteriormente, mas para simplificar, utilizamos listas
 # nativas do Python.
 
+
 # Classe para representar um contato
 class Contato:
     def __init__(self, codigo, nome, email):
@@ -26,9 +27,8 @@ class Contato:
 # Tabela Hash com tratamento de colisão por encadeamento
 class Hash:
     def __init__(self, tamanho_tabela):
-        self.tamanho = tamanho_tabela                      # tamanho de hash
-        self.tabela = [[] for _ in range(tamanho_tabela)]  # inicializa a tabela        
-
+        self.tamanho = tamanho_tabela  # tamanho de hash
+        self.tabela = [[] for _ in range(tamanho_tabela)]  # inicia a tabela
 
     # Função de hash simples: key mod tamanho
     def func_hash(self, key):
@@ -36,16 +36,16 @@ class Hash:
 
     # Insere um contato na tabela hash
     def inserir(self, contato):
-        chave = self.func_hash(contato.codigo) # calcula o índice
-        self.tabela[chave].append(contato)     # insere o contato na lista do índice
+        chave = self.func_hash(contato.codigo)  # calcula o índice
+        self.tabela[chave].append(contato)  # insere o contato na lista
 
     # Busca um contato na tabela hash pelo código
     def buscar(self, codigo):
         chave = self.func_hash(codigo)
-        if self.tabela[chave] is not None:      # se a lista não está vazia
+        if self.tabela[chave] is not None:  # se a lista não está vazia
             for contato in self.tabela[chave]:  # percorre a lista
-                if contato.codigo == codigo:    # se encontrar o contato
-                    return contato              # retorna o contato
+                if contato.codigo == codigo:  # se encontrar o contato
+                    return contato  # retorna o contato
         return None
 
     # Adicionar este método à classe Hash:
@@ -67,7 +67,10 @@ hash_table.inserir(Contato(2, "Saulo", "saulopz@gmail.com"))
 hash_table.inserir(Contato(6, "Joao", "joao@gmail.com"))
 hash_table.inserir(Contato(13, "Marta", "marta@gmail.com"))
 hash_table.inserir(Contato(12, "Roberta", "roberta@gmail.com"))
-hash_table.inserir(Contato(7, "Marta", "marta@gmail.com"))
+hash_table.inserir(Contato(7, "Maria", "maria@gmail.com"))
+hash_table.inserir(Contato(24, "Joaquim", "joaquim@gmail.com"))
+hash_table.inserir(Contato(11, "Claudio", "cladio@gmail.com"))
+hash_table.inserir(Contato(42, "Cristiano", "cristiano@gmail.com"))
 hash_table.mostrar_tabela()
 
 # Busca e imprime contatos

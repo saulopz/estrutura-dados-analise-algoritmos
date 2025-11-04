@@ -10,10 +10,11 @@ class No:
         return f"No('{self.dados}')"  # Facilitar a visualização.
 
 
-# Percorre a árvore em Pré-Ordem (Raiz -> Filhos). A indentação mostra a hierarquia.
+# Percorre a árvore em Pré-Ordem (Raiz -> Filhos).
+# A indentação mostra a hierarquia.
 def percorrer_pre_ordem(no_atual, nivel=0):
     print("  " * nivel + f"- {no_atual.dados}")  # 1. Visita a Raiz (nó atal)
-    for filho in no_atual.filhos:                # 2. Percorre recursivamente cada filho
+    for filho in no_atual.filhos:  # 2. Percorre recursivamente cada filho
         percorrer_pre_ordem(filho, nivel + 1)
 
 

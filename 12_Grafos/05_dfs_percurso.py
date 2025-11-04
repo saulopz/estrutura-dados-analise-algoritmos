@@ -1,5 +1,5 @@
 # Algoritmo Deep First Search (DFS)
-def navegacao_em_profundidade(grafo, v, visitado=None):
+def percurso_em_profundidade(grafo, v, visitado=None):
     if visitado is None:
         visitado = set()
 
@@ -8,7 +8,7 @@ def navegacao_em_profundidade(grafo, v, visitado=None):
 
     for vizinho in grafo[v]:
         if vizinho not in visitado:
-            navegacao_em_profundidade(grafo, vizinho, visitado)
+            percurso_em_profundidade(grafo, vizinho, visitado)
 
 
 # Exemplo de Grafo
@@ -33,5 +33,5 @@ grafo = {
 }
 
 print("Deep First Search:")
-navegacao_em_profundidade(grafo, "A")
+percurso_em_profundidade(grafo, "A")
 print()

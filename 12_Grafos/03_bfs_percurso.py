@@ -2,7 +2,7 @@ from collections import deque
 
 
 # Algoritmo Best First Searc (BFS)
-def navegacao_em_largura(grafo, inicio):
+def percurso_em_largura(grafo, inicio):
     visitado = set()
     fila = deque([inicio])
 
@@ -38,5 +38,5 @@ grafo = {
 }
 
 print("Deep First Search:")
-navegacao_em_largura(grafo, "A")
+percurso_em_largura(grafo, "A")
 print()

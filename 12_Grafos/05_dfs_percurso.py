@@ -16,7 +16,7 @@ def percurso_em_profundidade(grafo, v, visitado=None):
 #      A
 #     / \
 #    B   C
-#   / \ / \
+#   / \   \
 #  D   E   F
 #   \  |  /
 #    \ | /

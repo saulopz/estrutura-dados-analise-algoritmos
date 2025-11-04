@@ -24,7 +24,7 @@ def busca_em_profundidade(grafo, v, u, visitado=None):
 #      A
 #     / \
 #    B   C
-#   / \ / \
+#   / \   \
 #  D   E   F
 #   \  |  /
 #    \ | /

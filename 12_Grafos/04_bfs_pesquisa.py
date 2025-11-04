@@ -28,7 +28,7 @@ def busca_em_largura(grafo, v, u):
 #      A
 #     / \
 #    B   C
-#   / \ / \
+#   / \   \
 #  D   E   F
 #   \  |  /
 #    \ | /

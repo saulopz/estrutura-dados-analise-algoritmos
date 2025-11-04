@@ -21,7 +21,7 @@ def percurso_em_largura(grafo, inicio):
 #      A
 #     / \
 #    B   C
-#   / \ / \
+#   / \   \
 #  D   E   F
 #   \  |  /
 #    \ | /
